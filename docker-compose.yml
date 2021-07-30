@@ -1,0 +1,9 @@
+version: "3.9"  # optional since v1.27.0
+services:
+
+  php:
+    image: composer:2.1.5
+    volumes:
+      - ./:/app
+    working_dir: /app
+

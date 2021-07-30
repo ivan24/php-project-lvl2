@@ -1,0 +1,9 @@
+parameters:
+    checkMissingIterableValueType: false
+    reportUnmatchedIgnoredErrors: false
+    level: 8
+    paths:
+        - src
+        - bin
+    excludePaths:
+        - vendor
