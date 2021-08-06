@@ -1,5 +1,7 @@
 #!/usr/bin/env php
 <?php
+use function Differ\genDiff;
+
 $doc = <<<DOC
 Generate diff
 
@@ -11,13 +13,12 @@ Usage:
 Options:
   -h --help                     Show this screen
   -v --version                  Show version
-  --format <fmt>                Report format [default: stylish]
+  --format <fmt>                Report format [default: plain]
 
 DOC;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-$args = \Docopt::handle($doc, array('version'=>'1.0'));
-foreach ($args as $k=>$v) {
-    echo $k . ': ' . json_encode($v) . PHP_EOL;
-}
+$args = \Docopt::handle($doc, ['version' => '1.0']);
+
+echo genDiff($args);

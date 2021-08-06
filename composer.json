@@ -8,9 +8,9 @@
     },
     "license": "MIT",
     "autoload": {
-        "psr-4": {
-            "Hexlet\\": "src/"
-        }
+        "files": [
+            "src/Differ/gendiff.php"
+        ]
     },
     "authors": [
         {
@@ -19,6 +19,6 @@
         }
     ],
     "require": {
-        "docopt/docopt": "1.0.4"
+        "docopt/docopt": "^1.0.4"
     }
 }
