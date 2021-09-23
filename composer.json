@@ -4,7 +4,7 @@
     "type": "library",
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.6",
-        "phpstan/phpstan": "^0.12.93"
+        "phpstan/phpstan": "^0.12.99"
     },
     "license": "MIT",
     "autoload": {
@@ -19,6 +19,8 @@
         }
     ],
     "require": {
-        "docopt/docopt": "^1.0.4"
+        "php": "^8.0",
+        "docopt/docopt": "^1.0.4",
+        "lstrojny/functional-php": "^1.17"
     }
 }

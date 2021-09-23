@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+
 use function Differ\genDiff;
 
 $doc = <<<DOC
@@ -19,6 +20,10 @@ DOC;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-$args = \Docopt::handle($doc, ['version' => '1.0']);
+$params = \Docopt::handle($doc, ['version' => '1.0']);
 
-echo genDiff($args);
+echo genDiff(
+    $params->args['<firstFile>'],
+    $params->args['<secondFile>'],
+    $params->args['--format']
+);
