@@ -3,8 +3,8 @@
     "description": "new application",
     "type": "library",
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.6",
-        "phpstan/phpstan": "^0.12.99"
+        "squizlabs/php_codesniffer": "4.0.x-dev",
+        "phpstan/phpstan": "^1.4.8"
     },
     "license": "MIT",
     "autoload": {
@@ -19,8 +19,8 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "docopt/docopt": "^1.0.4",
-        "lstrojny/functional-php": "^1.17"
+        "lstrojny/functional-php": "^1.17.0"
     }
 }
