@@ -71,3 +71,6 @@ composer_install: ## install  dependencies
 run_lint: ## run linter
 	composer exec --verbose phpcs -- --standard=PSR12 src bin
 	composer exec --verbose phpstan analyse -- -c phpstan.neon --ansi
+
+run_test: ## run test without docker
+	composer exec --verbose phpunit tests
