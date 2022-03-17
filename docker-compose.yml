@@ -22,8 +22,6 @@ services:
       context: .
       target: php_project
       args:
-        SYMFONY_VERSION: ${SYMFONY_VERSION:-}
-        SKELETON: ${SKELETON:-symfony/skeleton}
         STABILITY: ${STABILITY:-stable}
     restart: unless-stopped
     volumes:
