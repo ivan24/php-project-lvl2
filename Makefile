@@ -59,3 +59,7 @@ vendor: composer
 phpstan: ## run phpstan checker
 phpstan: c=exec -v phpstan analyse -- -c /srv/app/phpstan.neon --ansi
 phpstan: composer
+
+test: ## run phpunit tests
+test: c=exec -v phpunit tests
+test: composer

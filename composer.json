@@ -4,10 +4,17 @@
     "type": "library",
     "require-dev": {
         "squizlabs/php_codesniffer": "4.0.x-dev",
-        "phpstan/phpstan": "^1.4.8"
+        "phpstan/phpstan": "^1.4.10",
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test": "phpunit tests"
     },
     "license": "MIT",
     "autoload": {
+        "psr-4": {
+            "Php\\Package\\Tests\\": "tests"
+        },
         "files": [
             "src/Differ/gendiff.php"
         ]

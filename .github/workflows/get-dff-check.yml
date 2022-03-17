@@ -1,0 +1,28 @@
+name: PHP CI
+
+on:
+  - push
+
+jobs:
+  brain-games-build:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Check-out repository under GitHub workspace
+      # https://github.com/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Action gives to setup the PHP environment to test application
+      # https://github.com/shivammathur/setup-ph
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0.16'
+
+      # Install project
+      - name: Install
+        run: make install
+
+      - name: Run linter
+        run: make lint
