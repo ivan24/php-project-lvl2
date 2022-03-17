@@ -22,7 +22,7 @@ jobs:
 
       # Install project
       - name: Install
-        run: make composer c='install'
+        run: make composer_install
 
       - name: Run linter
-        run: make lint
+        run: make run_lint

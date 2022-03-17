@@ -12,7 +12,7 @@ COMPOSER = $(PHP_CONT) composer
 
 # Misc
 .DEFAULT_GOAL = help
-.PHONY        = help build up start down logs sh composer vendor sf cc
+.PHONY        = help build up start down logs sh composer vendor sf cc composer_install run_lint
 
 help: ## Outputs this help screen
 	@grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
@@ -63,3 +63,11 @@ phpstan: composer
 test: ## run phpunit tests
 test: c=exec -v phpunit tests
 test: composer
+
+## —— PHP without docker  🐘 ——————————————————————————————————————————————————————————————
+composer_install: ## install  dependencies
+	composer install
+
+run_lint: ## run linter
+	composer exec --verbose phpcs -- --standard=PSR12 src bin
+	composer exec --verbose phpstan analyse -- -c phpstan.neon --ansi
