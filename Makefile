@@ -45,7 +45,7 @@ composer: ## Run composer, pass the parameter "c=" to run a given command, examp
 	@$(COMPOSER) $(c)
 
 validate: ## run composer validate
-	composer validate
+	@$(COMPOSER) validate
 
 lint: ## run linter
 lint: c=exec --verbose phpcs -- --standard=PSR12 src bin
