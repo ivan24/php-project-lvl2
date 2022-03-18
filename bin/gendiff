@@ -2,6 +2,8 @@
 <?php
 
 use function Differ\genDiff;
+use function Differ\getContent;
+use function Differ\diffToStr;
 
 $doc = <<<DOC
 Generate diff
@@ -21,9 +23,9 @@ DOC;
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 $params = \Docopt::handle($doc, ['version' => '1.0']);
+$first = getContent($params->args['<firstFile>']);
+$second = getContent($params->args['<secondFile>']);
 
-echo genDiff(
-    $params->args['<firstFile>'],
-    $params->args['<secondFile>'],
-    $params->args['--format']
-);
+$diff = genDiff($first, $second);
+
+echo diffToStr($diff, $params->args['--format']);

@@ -9,11 +9,8 @@ const ADD = 'add';
 const UNCHANGED = 'unchanged';
 const CHANGED = 'changed';
 
-function genDiff(string $pathToFile1, string $pathToFile2, string $format): string
+function genDiff(array $first, array $second): array
 {
-    $first = getContent($pathToFile1);
-    $second = getContent($pathToFile2);
-
     $diff = map($first, function ($item, $key) use ($second) {
         if (!array_key_exists($key, $second)) {
             return ['type' => REMOVE, 'key' => $key, 'value' => $item];
@@ -35,26 +32,31 @@ function genDiff(string $pathToFile1, string $pathToFile2, string $format): stri
 
     ksort($diff);
 
-    return diffToStr($diff);
+    return $diff;
 }
 
-function diffToStr(array $diff): string
+function diffToStr(array $diff, string $format): string
 {
     $items = array_map(function ($item) {
         return match ($item['type']) {
-            ADD => sprintf('+ %s: %s', $item['key'], scalarToStr($item['value'])),
-            UNCHANGED => sprintf('  %s: %s', $item['key'], scalarToStr($item['value'])),
-            REMOVE => sprintf('- %s: %s', $item['key'], scalarToStr($item['value'])),
+            ADD => diffItemToStr('+', $item['key'], $item['value']),
+            UNCHANGED => diffItemToStr(' ', $item['key'], $item['value']),
+            REMOVE => diffItemToStr('-', $item['key'], $item['value']),
             CHANGED => sprintf(
-                "- %s: %s \n+ %1\$s: %s",
-                $item['key'],
-                scalarToStr($item['value']),
-                scalarToStr($item['value2'])
+                "%s\n%s",
+                diffItemToStr('-', $item['key'], $item['value']),
+                diffItemToStr('+', $item['key'], $item['value2']),
             ),
             default => throw new \Exception('Unknown type ' . $item['type'])
         };
     }, $diff);
+
     return sprintf("{\n%s\n}", implode("\n", $items));
+}
+
+function diffItemToStr(string $sign, string $key, mixed $value): string
+{
+    return sprintf('%s %s: %s', $sign, $key, scalarToStr($value));
 }
 
 function scalarToStr(mixed $value): string

@@ -37,7 +37,7 @@ sh: ## Connect to the PHP FPM container
 
 run_with_debug: ## run cli php script with xdebug. Pass the parameter "c=" to run a given command, example: make composer c='bin/select.php'
 	@$(eval c ?=)
-	@$(DOCKER_COMP) exec -e XDEBUG_SESSION=PHPSTORM php php $(c)
+	@$(DOCKER_COMP) exec -e XDEBUG_SESSION=PHPSTORM php $(c)
 
 ## —— Composer 🧙 ——————————————————————————————————————————————————————————————
 composer: ## Run composer, pass the parameter "c=" to run a given command, example: make composer c='req symfony/orm-pack'
